@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kongdy.lib.com.kongdy.numbercounttextview.MainActivity">
+    tools:context="com.kongdy.numbercounttextview.MainActivity">
 
     <com.kongdy.numbercounttextviewlib.view.NumberCountTextView
         android:id="@+id/nctv_test"

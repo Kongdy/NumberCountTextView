@@ -4,7 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NumberCountTextView.iml" filepath="$PROJECT_DIR$/NumberCountTextView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/numbercounttextviewlib/numbercounttextview2.iml" filepath="$PROJECT_DIR$/numbercounttextviewlib/numbercounttextview2.iml" />
+      <module fileurl="file://E:\MyAndroidSpace\NumberCountTextView\numbercounttextviewlib\numbercounttextview2.iml" filepath="E:\MyAndroidSpace\NumberCountTextView\numbercounttextviewlib\numbercounttextview2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/numbercounttextviewlib/numbercounttextviewlib.iml" filepath="$PROJECT_DIR$/numbercounttextviewlib/numbercounttextviewlib.iml" />
     </modules>
   </component>
 </project>

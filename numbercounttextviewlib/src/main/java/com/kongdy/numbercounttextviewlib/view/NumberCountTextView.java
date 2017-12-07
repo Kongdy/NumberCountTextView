@@ -10,6 +10,9 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * @author kongdy
  * @date 2017/12/6 17:19
@@ -34,11 +37,11 @@ public class NumberCountTextView extends TextView {
     private Object valueStub;
 
     public NumberCountTextView(Context context) {
-        super(context);
+        this(context,null);
     }
 
     public NumberCountTextView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs,-1);
     }
 
     public NumberCountTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -108,9 +111,11 @@ public class NumberCountTextView extends TextView {
             valueAnimator.setDuration(ANIMATION_DURATION);
             valueAnimator.setStartDelay(ANIMATION_START_DELAY);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @SuppressLint("DefaultLocale")
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    sendUpdateMsg(valueAnimator.getAnimatedValue().toString());
+                    Float tempValue = Float.valueOf(valueAnimator.getAnimatedValue().toString());
+                    sendUpdateMsg(String.format("%.2f",tempValue));
                 }
             });
             valueAnimator.start();
