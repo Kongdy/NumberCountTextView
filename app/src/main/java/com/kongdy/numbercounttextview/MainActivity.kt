@@ -8,7 +8,7 @@ import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity(),View.OnClickListener {
 
-    private val decimalFormat:DecimalFormat = DecimalFormat("###,###,###,###,##0.00")
+    private val decimalFormat:DecimalFormat = DecimalFormat("#,###.00")
 
     override fun onClick(p0: View?) {
 

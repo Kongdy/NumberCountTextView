@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class NumberCountTextView extends TextView {
     private Object valueStub;
 
     private CharSequence txtStub;
+    private CharSequence hideTxtStub;
     private boolean isHide = false;
 
     private NumberFormat numberFormat;
@@ -165,13 +167,21 @@ public class NumberCountTextView extends TextView {
 
     public void hideTxt(String hideTxt) {
         txtStub = getText();
+        this.hideTxtStub = hideTxt;
         setText(hideTxt);
         isHide = true;
     }
 
     public void showTxt() {
+        showTxt(txtStub);
+    }
+
+    public void showTxt(CharSequence defaultTxt){
         isHide = false;
-        setText(txtStub);
+        if(TextUtils.isEmpty(txtStub) || TextUtils.equals(hideTxtStub, txtStub))
+            setText(defaultTxt);
+        else
+            setText(txtStub);
     }
 
     @Override
