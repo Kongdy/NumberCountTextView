@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+
 /**
  * @author kongdy
  * @date 2017/12/6 17:19
@@ -34,7 +36,9 @@ public class NumberCountTextView extends TextView {
     private Object valueStub;
 
     private CharSequence txtStub;
-    private boolean isHiden = false;
+    private boolean isHide = false;
+
+    private NumberFormat numberFormat;
 
     public NumberCountTextView(Context context) {
         this(context, null);
@@ -100,7 +104,13 @@ public class NumberCountTextView extends TextView {
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    sendUpdateMsg(valueAnimator.getAnimatedValue().toString());
+                    Float tempValue = Float.valueOf(valueAnimator.getAnimatedValue().toString());
+                    String toUpdateTxt;
+                    if (null != numberFormat)
+                        toUpdateTxt = numberFormat.format(tempValue);
+                    else
+                        toUpdateTxt = String.valueOf(tempValue);
+                    sendUpdateMsg(toUpdateTxt);
                 }
             });
             valueAnimator.start();
@@ -115,7 +125,12 @@ public class NumberCountTextView extends TextView {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
                     Float tempValue = Float.valueOf(valueAnimator.getAnimatedValue().toString());
-                    sendUpdateMsg(String.format("%.2f", tempValue));
+                    String toUpdateTxt;
+                    if (null != numberFormat)
+                        toUpdateTxt = numberFormat.format(tempValue);
+                    else
+                        toUpdateTxt = String.format("%.2f", tempValue);
+                    sendUpdateMsg(toUpdateTxt);
                 }
             });
             valueAnimator.start();
@@ -151,18 +166,26 @@ public class NumberCountTextView extends TextView {
     public void hideTxt(String hideTxt) {
         txtStub = getText();
         setText(hideTxt);
-        isHiden = true;
+        isHide = true;
     }
 
     public void showTxt() {
-        isHiden = false;
+        isHide = false;
         setText(txtStub);
     }
 
     @Override
     public void setText(CharSequence text, BufferType type) {
-        if(isHiden)
+        if (isHide)
             return;
         super.setText(text, type);
+    }
+
+    public NumberFormat getNumberFormat() {
+        return numberFormat;
+    }
+
+    public void setNumberFormat(NumberFormat numberFormat) {
+        this.numberFormat = numberFormat;
     }
 }
